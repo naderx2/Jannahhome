@@ -18,6 +18,19 @@ Disponible en **français** (`/fr`) et **arabe** (`/ar`).
 - Ajouter/modifier/supprimer des produits (image, vidéo, prix, promo)
 - Créer et gérer les promotions
 
+### Notifications WhatsApp
+- À chaque nouvelle commande, un message est envoyé au propriétaire : **+216 93 775 858**
+- Configurer dans `.env` : `WHATSAPP_OWNER_PHONE` et `CALLMEBOT_API_KEY`
+
+**Activer CallMeBot (gratuit) :**
+1. Ajoutez **+34 694 17 28 99** dans vos contacts WhatsApp
+2. Envoyez le message : `I allow callmebot to send me messages`
+3. Vous recevez une clé API — mettez-la dans `.env` :
+   ```
+   CALLMEBOT_API_KEY="votre-cle"
+   ```
+4. Redémarrez le serveur (`npm run dev`)
+
 ## Démarrage local
 
 ```bash

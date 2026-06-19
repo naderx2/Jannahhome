@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getEffectivePrice } from "@/lib/utils";
+import { notifyOwnerNewOrder } from "@/lib/whatsapp";
 
 export async function POST(request: Request) {
   try {
@@ -64,8 +65,14 @@ export async function POST(request: Request) {
           }),
         },
       },
-      include: { items: true },
+      include: {
+        items: { include: { product: true } },
+      },
     });
+
+    notifyOwnerNewOrder(order).catch((err) =>
+      console.error("WhatsApp notification failed:", err)
+    );
 
     return NextResponse.json(order, { status: 201 });
   } catch {
